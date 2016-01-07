@@ -1,0 +1,32 @@
+body {
+  background-color: #3B9390;
+  height: 100%;
+}
+
+#center-section {
+  background-color: white;
+
+  bottom: 0px;
+}
+
+h2 {
+  color: #3B9390;
+}
+
+ul li {
+  display: inline-block;
+  padding-right: 2em;
+  padding-left: 2em;
+  padding-top: 1em;
+}
+
+span {
+  padding-right: 1em;
+  padding-left: 1em;
+  text-decoration: underline;
+}
+
+.separate-margin {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}

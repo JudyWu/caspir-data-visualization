@@ -1,0 +1,206 @@
+<html>
+  <head>
+    <title>CASPIR </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--<link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- <script src="bower_components/chartist/dist/chartist.min.js"></script>-->
+    <script type="text/javascript" src="matchMedia.js"></script>
+    <script type="text/javascript" src="matchMedia.addListener.js"></script>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script type="text/javascript" src="moment.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+  </head>
+
+  <body class="row">
+    <div id="center-section" class="col-md-10 col-md-offset-1">
+      <div class="header-section">
+        <div class="row">
+          <div class="col-sm-4">
+            <h2><img src="images/caspir_app_icon.png" style="width: 1.5em;" >CASPIR</h2>
+            <footer>Center for Addiction Services and Psychotherapy Interventions Research</footer>
+          </div>
+          <div class="col-sm-4 col-sm-offset-4">
+            <img src="images/northwell_health.jpg" style="height: 8em; width: 12em;" class="pull-right">
+          </div>
+        </div>
+      </div>
+
+
+      <div id="upload-csv-section" class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <h3 class="text-center">CSV support for drinking habbit</h3>
+          <p>
+            CASPIR supports CSV file for data visualization. We transform your data in the csv file into graphs and forms so that the researcher/clinicians can easily see the process and situation of the patients. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+          </p>
+          <button id="upload-button" type="button" class="btn btn-lg center-block" style="background-color: #3B9390; color: white; margin-top: 3em; margin-bottom: 3em;">Upload CSV Here</button>
+        </div>
+
+        <div class="col-sm-10 col-sm-offset-1">
+          <h5>CSV File support</h5>
+          <p>
+            For the report to accurately report the data, please make sure that you csv file follow the below requirements.
+          </p>
+          <ol>
+            <li>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</li>
+            <li>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</li>
+            <li>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</li>
+          </ol>
+        </div>
+      </div>
+
+
+      <div id="chart-section" style="display: none;">
+        <div class="col-sm-12">
+          <h3 class="text-center">Report</h3>
+          <p id="report-date" class="pull-right"></p>
+        </div>
+        <div class="col-sm-6">
+          <div class="thumbnail">
+            <!-- <img class="img-responsive" src="images/northwell_health.jpg"> -->
+            <div class="ct-chart ct-perfect-fourth" id="ct-chart1"></div>
+          </div>
+          <div class="caption">
+            <h4>Everyday drinking vs. environments</h4>
+            <p>
+              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="thumbnail">
+            <!-- <img class="img-responsive" src="images/northwell_health.jpg"> -->
+            <div class="ct-chart ct-perfect-fourth" id="ct-chart2"></div>
+          </div>
+          <div class="caption">
+            <h4>Everyday drinking vs. environments</h4>
+            <p>
+              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="form-section" style="display: none;">
+        <h4>BSCT Session 1 Patient Information for Therapist:</h4>
+        <div id="form-A-section">
+          <p>A. Goal from MI Change Plan: <span>Limit my drinking after work</span></p>
+        </div>
+        <div id="form-B-section">
+          <p>B. Baseline characteristics:</p>
+          <p>a. TDS summary information</p>
+          <table id="form-B-table" class="table table-bordered">
+            <tr>
+              <th>TDS (Typical Drinking Situation)</th>
+              <th>Typical frequency</th>
+              <th>Typical frequency of drinking</th>
+              <th>Avg # standard drinks in TDS</th>
+              <th>Occurs mostly during</th>
+              <th>Motives endorsed (possibly yes or definitely yes)</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+          </table>
+          <div id="form-B-data">
+            <p>b. TLFB summary information &#45;&#45; days assessed: <span>65</span></p>
+
+            <ul>
+              <li># drinking days: <span>24</span></li>
+              <li># heavy (>4) drinking days: <span>43</span></li>
+              <li># std drinks/wk: <span>54</span></li>
+              <li>drinks/drinking day: <span>53</span></li>
+            </ul>
+          </div>
+        </div>
+        <div id="form-C-section">
+          <p>C. Past month drinking</p>
+          <ul>
+            <li>EMA compliance: <span>42</span></li>
+            <li>Average # drinks/drinking day: <span>3</span></li>
+            <li># heavy (>4) days: <span>1</span></li>
+            <li># moderate (1-4) days: <span>42</span></li>
+            <li># abstinent days: <span>37</span></li>
+          </ul>
+        </div>
+        <div id="form-D-section">
+          <p>D. Overview of High Risk Situations over past month:</p>
+          <table id="form-D-table" class="table table-bordered">
+            <tr>
+              <th>TDS (Typical Drinking Situation)</th>
+              <th>Number of times in TDS</th>
+              <th>Number of times drank in TDS</th>
+              <th>Avg # standard drinks in TDS</th>
+              <th>Situation reported mostly during:</th>
+              <th>Average urge in this situation (on a 0-8 scale)</th>
+              <th>Number f times reported "amount was probably/definitely excessive"</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <div id="funtion-buttons">
+          <button id="download-png" class="btn btn-success">Download As PNG File</button>
+          <button id="go-back-button" class="btn btn-primary">Go Back To Upload More CSV Files</button>
+        </div>
+      </div>
+      <hr>
+      <footer>
+        <span style="text-decoration: none;">Please email <a href="mailto:CASPIR@nshs.edu?Subject=Help%20with%20CSV%20Report">us</a> here for support/help.</span>
+        <span class="pull-right" style="color: #B8B3BA; text-decoration: none;">Copyright is reserved by CASPIR | 2016.</span>
+      </footer>
+    </div>
+  </body>
+</html>
