@@ -5,8 +5,11 @@ body {
 
 #center-section {
   background-color: white;
-
   bottom: 0px;
+}
+
+.extra-margin {
+  height: 60px;
 }
 
 h2 {
@@ -29,4 +32,9 @@ span {
 .separate-margin {
   margin-top: 5em;
   margin-bottom: 5em;
+}
+
+.ct-label {
+  color: black !important;
+  font-size: 1.3rem !important;
 }
