@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Data Visualization | CASPIR</title>
+    <!-- Version 1.1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSS section -->
@@ -10,28 +11,31 @@
     <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheets/chartist.min.css">
+    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"> -->
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"> -->
 
     <!-- Javascripts section -->
     <script src="javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.csv-0.71.min.js"></script>
     <script src="javascripts/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script type="text/javascript" src="javascripts/matchMedia.js"></script>
     <script type="text/javascript" src="javascripts/matchMedia.addListener.js"></script>
-    <!--<script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>-->
+    <!-- <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script> -->
     <script type="text/javascript" src="javascripts/chartist.min.js"></script>
     <script type="text/javascript" src="javascripts/moment.min.js"></script>
-    <script type="text/javascript" src="javascripts/jquery.csv-0.71.min.js"></script>
     <script type="text/javascript" src="javascripts/script.js"></script>
   </head>
 
   <body class="row">
+    <div id="tds_data"></div>
+    <div id="survey_data"></div>
     <div id="center-section" class="col-md-10 col-md-offset-1">
       <!-- Header section -->
       <div class="header-section">
         <div class="row">
           <div class="col-sm-4 col-xs-4">
-            <h2><img src="images/caspir_app_icon.png" style="width: 1.5em;" >CASPIR</h2>
+            <h2><img src="images/caspir_app_icon.png" style="width: 1.5em;">CASPIR</h2>
             <footer>Center for Addiction Services and Psychotherapy Interventions Research</footer>
           </div>
           <div class="col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
@@ -153,7 +157,7 @@
           <div class="caption">
             <h4>Time vs. Drinking</h4>
             <p>
-              The graph above shows the total number of drinking per day through the whole time the participant was in the experiment.
+              The graph above shows the total number of drinking per day through the whole time the participant was in the study. X axis means the day while y axis means the number of drinks. 
             </p>
           </div>
         </div>
@@ -165,7 +169,7 @@
           <div class="caption">
             <h4>Average drinking vs. TDS</h4>
             <p>
-              The graph above shows the average drinking for each TDS throughout the whole experiment time.
+              The graph above shows the average drinking for each TDS throughout the whole study time. X axis means the types of tds while y axis means the number of drinks.
             </p>
           </div>
         </div>
@@ -270,21 +274,23 @@
     <script type="text/javascript">
         $(document).ready(function(){
             document.getElementById('tds-file-upload').addEventListener('change', upload, false);
-            document.getElementById('survey-file-upload').addEventListener('change', upload_1, false);
+            document.getElementById('survey-file-upload').addEventListener('change', upload, false);
             var upload_section = document.getElementById("upload-csv-section");
             var chart_section = document.getElementById("chart-section");
             var form_section = document.getElementById("form-section");
             var go_back = document.getElementById("go-back-button");
 
             $("#upload-button").on("click", function(){
-                upload_section.style.display = 'none';
-                chart_section.style.display = 'block';
-                form_section.style.display = 'block';
+                tds_data_calculation($('#tds_data').data('csv'), function() {get_the_thirty_days_period($('#survey_data').data('csv'))}); 
+                // survey_data_calculation($('#survey_data').data('csv'));
                 var today = moment().format('MMMM Do, YYYY');
                 $("#report-date").html(today);
                 collect_value();
-                document.querySelector('#ct-chart1').__chartist__.update();
-                document.querySelector('#ct-chart2').__chartist__.update();
+                upload_section.style.display = 'none';
+                chart_section.style.display = 'block';
+                form_section.style.display = 'block';
+                // document.querySelector('#ct-chart1').__chartist__.update();
+                // document.querySelector('#ct-chart2').__chartist__.update();
             });
 
             $("#go-back-button").on("click", function() {
@@ -292,11 +298,6 @@
                 chart_section.style.display = 'none';
                 form_section.style.display = 'none';
             });
-
-            // For reading the CSV files
-
-            // Method that checks that the browser supports the HTML5 File API
-
         })
     </script>
   </body>

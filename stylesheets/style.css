@@ -38,3 +38,8 @@ span {
   color: black !important;
   font-size: 1.3rem !important;
 }
+
+.ct-series-a .ct-bar {
+  /* Colour of your bars */
+  stroke: #3B9390;
+}
