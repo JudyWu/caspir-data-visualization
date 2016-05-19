@@ -147,11 +147,19 @@ function get_the_thirty_days_period(data) {
     });
 
     var last_survey_date = time_span_label[time_span_label.length - 1];
+    var check_for_29 = 0;
     $.each(time_span_label, function(index, value) {
-        if (moment(last_survey_date).diff(value, 'days') == 29) {
+        if (moment(last_survey_date).diff(value, 'days') >= 29 && check_for_29 ==0) {
             thirty_surveys_before_date = index + 1;
-        }
+            check_for_29 += 1;
+            console.log("DONE!");
+        } 
     });
+
+    if (typeof thirty_surveys_before_date  === "undefined") {
+        thirty_surveys_before_date = 1;
+    }
+    console.log(thirty_surveys_before_date);
     survey_data_calculation(data, thirty_surveys_before_date, time_span_label.length); 
 }
 
@@ -170,11 +178,11 @@ function survey_data_calculation(data, thirty_days_index, time_span_label_length
     var number_tds_array = [];
 
     if (tds1 !== "") {
-        number_tds_array.push(tds1);
+        number_tds_array.push("tds1_______________");
         if (tds2 !== "") {
-            number_tds_array.push(tds2);
+            number_tds_array.push("tds2_______________");
             if (tds3 !== "") {
-                number_tds_array.push(tds3);
+                number_tds_array.push("tds3_______________");
             }
         }
     }
@@ -207,14 +215,19 @@ function survey_data_calculation(data, thirty_days_index, time_span_label_length
         var all_amtdrink_average; 
         var desire_average;
         var tds_data = {};
-        console.log(thirty_days_index);
 
         $.each(data, function(index, val) {
             // tds_id_1 total number
             if (index > 0) {
                 //drinktotal for all the input
                 if (check_for_once == 0) {
-                    all_drinktotal_series.push(parseInt(data[index][drinktotal_index]));
+                    if (parseInt(data[index][drinktotal_index]) == 0) {
+                        all_drinktotal_series.push(0.1);
+                        console.log(0);
+                    } else {
+                        all_drinktotal_series.push(parseInt(data[index][drinktotal_index]));
+                    }
+
                 }
 
                 if (!isNaN(data[index][amtdrink_index]) && data[index][amtdrink_index] !== "") {
@@ -227,7 +240,13 @@ function survey_data_calculation(data, thirty_days_index, time_span_label_length
                     
                     if (check_for_once == 0) {
                         //drinktotal for only 30 days
+                        // if (parseInt(data[index][drinktotal_index]) == 0) {
+                        //     console.log();
+
+                        // } else {
                         drinktotal_series.push(parseInt(data[index][drinktotal_index]));
+                        // }
+                       
                         //excess
                         excess_series.push(parseInt(data[index][excess_index]));
                     }
@@ -342,6 +361,8 @@ function chart_drink_over_time(time_span_label, drinktotal_series, div_id) {
     };
 
     var options = {
+        high: 14,
+        ticks: ['One', 'Two', 'Three'],
         axisY: {
             onlyInteger: true
         },
