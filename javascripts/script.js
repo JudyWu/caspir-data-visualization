@@ -417,7 +417,7 @@ function past_drinking_summary(data_length, drinktotal_series) {
     $('#n_moderate_days_output').html(moderate_drink_day);
     $('#n_abstinent_days_output').html(abstinent_drink_day);
 
-    var average_drink = drinktotal_sum/EMA_compliance;
+    var average_drink = drinktotal_sum/(heavy_drink_day + moderate_drink_day);
     $('#average_n_drinking_day_output').html(average_drink.toFixed(1));
 }
 
