@@ -1,4 +1,4 @@
-// For storing and rendering the fixed info of input variables' results 
+// For storing and rendering the fixed info of input variables' results ** NO CALCULATION involve!!!!!
 function collect_value() {
     var variables_array = ['inputReportTitle', 'inputParticipantID', 'TLFB_summary_info_days', 'n_drinking_days', 'n_heavy_drinking_days', 'n_std_drinks_per_wk', 'drinks_or_drinking_day', 'MI_change_plan_goal'];
     $.each(variables_array, function(i, name){
@@ -8,8 +8,8 @@ function collect_value() {
 }
 
 var number_tds_array = [];
-// Calculation for TDS Summary Information
-function tds_data_calculation(data, callback) {
+// Calculation for TDS Summary Information *** NO COMPLEX CALCULATION involved!!!
+function tds_data_calculation(data) {
     var variable_keys = ['tds1label', 'tds1freq', 'tds1situation', 'tds1amtdrink', 'tds1time', 'tds1socialization', 'tds1mood', 'tds1taste', 'tds1stress', 'tds1emotions', 'tds1motive_other', 'tds1time___1', 'tds1time___2', 'tds1time___3', 'tds1time___4', 'tds1time___5', 'tds2time___1', 'tds2time___2', 'tds2time___3', 'tds2time___4', 'tds2time___5', 'tds3time___1', 'tds3time___2', 'tds3time___3', 'tds3time___4', 'tds3time___5', 'tds2label', 'tds2freq', 'tds2situation', 'tds2amtdrink', 'tds2time', 'tds2socialization', 'tds2mood', 'tds2taste', 'tds2stress', 'tds2emotions', 'tds2motive_other', 'tds3label', 'tds3freq', 'tds3situation', 'tds3amtdrink', 'tds3time', 'tds3socialization', 'tds3mood', 'tds3taste', 'tds3stress', 'tds3emotions', 'tds3motive_other']
 
     $.each(data[0], function(i, name){
@@ -130,41 +130,36 @@ function tds_data_calculation(data, callback) {
             }
         }
     })
-    callback();
 }
 
-/// Get the index for the thirty days period
+
+/// Get the index for the thirty days period and real calculation involved~~~~~~
 function get_the_thirty_days_period(data) {
     //Variables
     var time_span_label = [];
     var timestamp_index = $.inArray('pid_timestamp', data[0]);
-    var thirty_surveys_before_date;
+    var thirty_surveys_before_date = 1;
 
-    $.each(data, function(index, value) {
+    $.each(data, function(index, value) { 
         if (index > 0) {
             time_span_label.push(data[index][timestamp_index]);
         }
     });
 
-    var last_survey_date = time_span_label[time_span_label.length - 1];
-    var check_for_29 = 0;
+    var last_survey_date = moment(time_span_label[time_span_label.length - 1]).format('YYYY-MM-DD');;
+    var check_for_30 = 0;
     $.each(time_span_label, function(index, value) {
-        if (moment(last_survey_date).diff(value, 'days') >= 29 && check_for_29 ==0) {
-            thirty_surveys_before_date = index + 1;
-            check_for_29 += 1;
-            console.log("DONE!");
-        } 
+        var day_value = moment(value).format('YYYY-MM-DD');
+        if (moment(last_survey_date).diff(day_value, 'days') < 30 && check_for_30 == 0) {
+            thirty_surveys_before_date = index;
+            check_for_30 += 1;
+        }
     });
-
-    if (typeof thirty_surveys_before_date  === "undefined") {
-        thirty_surveys_before_date = 1;
-    }
-    console.log(thirty_surveys_before_date);
-    survey_data_calculation(data, thirty_surveys_before_date, time_span_label.length); 
+    survey_data_calculation(data, thirty_surveys_before_date, time_span_label.length, time_span_label); 
 }
 
 /// For rendering the graphs and High risk table
-function survey_data_calculation(data, thirty_days_index, time_span_label_length) {
+function survey_data_calculation(data, thirty_days_index, time_span_label_length, time_span_label) {
     //For the overview high risk drinking
     var drinktotal_series = [];
     var all_drinktotal_series = [];
@@ -223,7 +218,6 @@ function survey_data_calculation(data, thirty_days_index, time_span_label_length
                 if (check_for_once == 0) {
                     if (parseInt(data[index][drinktotal_index]) == 0) {
                         all_drinktotal_series.push(0.1);
-                        console.log(0);
                     } else {
                         all_drinktotal_series.push(parseInt(data[index][drinktotal_index]));
                     }
@@ -239,15 +233,7 @@ function survey_data_calculation(data, thirty_days_index, time_span_label_length
                     tds_id_sum += (!isNaN(data[index][tds_id_index]) && data[index][tds_id_index] !== "") ? parseInt(data[index][tds_id_index]) : 0;
                     
                     if (check_for_once == 0) {
-                        //drinktotal for only 30 days
-                        // if (parseInt(data[index][drinktotal_index]) == 0) {
-                        //     console.log();
-
-                        // } else {
                         drinktotal_series.push(parseInt(data[index][drinktotal_index]));
-                        // }
-                       
-                        //excess
                         excess_series.push(parseInt(data[index][excess_index]));
                     }
                     // Time line -- may not be useful
@@ -336,22 +322,53 @@ function survey_data_calculation(data, thirty_days_index, time_span_label_length
         $('#form-D-table').find('tbody').append(tds_tr);
     });
 
+    ///// Insert missing date and delete duplicated date
+    var current_date;
+    var time_span_label_copy = [];
+    var all_drinktotal_series_copy = [];
+
+    $.each(time_span_label, function(index, value) {
+        var day_value = moment(value).format('YYYY-MM-DD'); 
+        if (index > 0) {
+            if ((moment(day_value).diff(current_date, 'days') == 0)) {
+                if (all_drinktotal_series[index] != NaN) {
+                    all_drinktotal_series_copy.splice(-1, 1);
+                    all_drinktotal_series_copy.push(all_drinktotal_series[index]);
+                }
+            } else if (moment(day_value).diff(current_date, 'days') == 1) {
+                current_date = day_value;
+                time_span_label_copy.push(day_value);
+                all_drinktotal_series_copy.push(all_drinktotal_series[index]);
+            } else if (moment(value).diff(current_date, 'days') > 1) {
+                while (moment(value).diff(current_date, 'days') > 1) {
+                    current_date = moment(current_date).add(1, 'days').format('YYYY-MM-DD');
+                    time_span_label_copy.push(current_date);
+                    all_drinktotal_series_copy.push(NaN);
+                }
+                current_date = day_value;
+                time_span_label_copy.push(day_value);
+                all_drinktotal_series_copy.push(all_drinktotal_series[index]);
+            }
+        } else {
+            current_date = day_value;
+            time_span_label_copy.push(day_value);
+            all_drinktotal_series_copy.push(all_drinktotal_series[index]);
+        }
+    });
+
     //For the graph
     var time_list = []
-    for (var i = 1; i <= time_span_label_length; i ++) {
+    for (var i = 1; i <= time_span_label_copy.length; i ++) {
         if (i%5 == 0) {
             time_list.push(i) 
         } else {
             time_list.push(" ")
         }
     }
-
-    chart_drink_over_time(time_list, all_drinktotal_series, "#ct-chart1");
+    chart_drink_over_time(time_list, all_drinktotal_series_copy, "#ct-chart1");
     //For the past drinking
-    past_drinking_summary((time_span_label_length - thirty_days_index) + 1, drinktotal_series);
+    past_drinking_summary(drinktotal_series);
 
-    console.log(drinktotal_series);
-    
 }
 
 function chart_drink_over_time(time_span_label, drinktotal_series, div_id) {
@@ -391,11 +408,7 @@ function chart_drink_over_time(time_span_label, drinktotal_series, div_id) {
 }
 
 // for Past month drinking table
-function past_drinking_summary(data_length, drinktotal_series) {
-    // var EMA_compliance = data.length - 1;
-    var EMA_compliance = data_length;
-    $('#EMA_compliance_output').html(EMA_compliance);
-
+function past_drinking_summary(drinktotal_series) {
     var drinktotal_sum = 0;
     var heavy_drink_day = 0;
     var moderate_drink_day = 0;
@@ -408,7 +421,7 @@ function past_drinking_summary(data_length, drinktotal_series) {
           heavy_drink_day += 1;
         } else if (value >= 1 && value <= 4 ) {
           moderate_drink_day += 1;
-        } else {
+        } else if (value == 0) {
           abstinent_drink_day += 1;
         }
     });
@@ -416,8 +429,10 @@ function past_drinking_summary(data_length, drinktotal_series) {
     $('#n_heavy_days_output').html(heavy_drink_day);
     $('#n_moderate_days_output').html(moderate_drink_day);
     $('#n_abstinent_days_output').html(abstinent_drink_day);
+    var EMA_compliance = heavy_drink_day + moderate_drink_day;
+    $('#EMA_compliance_output').html(EMA_compliance);
 
-    var average_drink = drinktotal_sum/(heavy_drink_day + moderate_drink_day);
+    var average_drink = drinktotal_sum/EMA_compliance;
     $('#average_n_drinking_day_output').html(average_drink.toFixed(1));
 }
 
