@@ -282,7 +282,6 @@
 
             $("#upload-button").on("click", function(){
                 tds_data_calculation($('#tds_data').data('csv')); 
-                // survey_data_calculation($('#survey_data').data('csv'));
                 get_the_thirty_days_period($('#survey_data').data('csv'));
                 var today = moment().format('MMMM Do, YYYY');
                 $("#report-date").html(today);
