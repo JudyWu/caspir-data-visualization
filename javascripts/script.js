@@ -357,12 +357,12 @@ function survey_data_calculation(data, thirty_days_index, time_span_label_length
     });
 
     //For the graph
-    var time_list = []
+    var time_list = [];
     for (var i = 1; i <= time_span_label_copy.length; i ++) {
-        if (i%5 == 0) {
-            time_list.push(i) 
+        if (i%7 == 0) {
+            time_list.push(moment(time_span_label_copy[i]).format('dd,M/D'));
         } else {
-            time_list.push(" ")
+            time_list.push(" ");
         }
     }
     chart_drink_over_time(time_list, all_drinktotal_series_copy, "#ct-chart1");
