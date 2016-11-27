@@ -22,14 +22,14 @@
     <script type="text/javascript" src="javascripts/plugins/matchMedia.js"></script>
     <script type="text/javascript" src="javascripts/plugins/matchMedia.addListener.js"></script>
     <!-- <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script> -->
-    <script type="text/javascript" src="javascripts/plugins/chartist.min.js"></script>
     <script type="text/javascript" src="javascripts/plugins/moment.min.js"></script>
+    <script type="text/javascript" src="javascripts/plugins/Chart.min.js"></script>
     <script type="text/javascript" src="javascripts/script.js"></script>
   </head>
 
   <body class="row">
-    <div id="tds_data"></div>
-    <div id="survey_data"></div>
+    <div id="tds-data"></div>
+    <div id="survey-data"></div>
     <div id="center-section" class="col-md-10 col-md-offset-1">
       <!-- Header section -->
       <div class="header-section">
@@ -63,24 +63,24 @@
               <div class="col-xs-10">
                 <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email if you would like to receive the report by email">
               </div -->
-              <label for="inputParticipantID" class="col-xs-5 control-label">Participant's ID</label>
+              <label for="input-participant-ID" class="col-xs-5 control-label">Participant's ID</label>
               <div class="col-xs-7">
-                <input type="text" class="form-control" id="inputParticipantID" placeholder="Participant ID">
+                <input type="text" class="form-control" id="input-participant-ID" placeholder="Participant ID">
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputReportTitle" class="col-xs-5 control-label">Report Title</label>
+              <label for="input-report-title" class="col-xs-5 control-label">Report Title</label>
               <div class="col-xs-7">
-                <input type="text" class="form-control" id="inputReportTitle" placeholder="Report title">
+                <input type="text" class="form-control" id="input-report-title" placeholder="Report title">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-xs-5 control-label" for="exampleInputFile">TDS CSV File</label>
-              <input class="col-xs-7" type="file" name="File Upload" id="tds-file-upload" accept=".csv" />
+              <label class="col-xs-5 control-label" for="tds-file-upload">TDS CSV File*:</label>
+              <input class="col-xs-7" type="file" name="File Upload" id="tds-file-upload" accept=".csv" required>
             </div>
             <div class="form-group row">
-              <label class="col-xs-5 control-label" for="exampleInputFile">Morning Survey CSV File</label>
-              <input class="col-xs-7" type="file" name="File Upload" id="survey-file-upload" accept=".csv" />
+              <label class="col-xs-5 control-label" for="survey-file-upload">Morning Survey CSV File*:</label>
+              <input class="col-xs-7" type="file" name="File Upload" id="survey-file-upload" accept=".csv" required>
             </div>
           </form>
         </div>
@@ -89,54 +89,72 @@
         <div class="col-sm-8 col-sm-offset-1">
           <form class="form-B-data form-horizontal">  
             <div class="form-group row">
-              <label class="col-xs-5 control-label" for="inputPlanGoal">Goal from MI Change Plan:</label>
+              <label class="col-xs-5 control-label" for="MI-change-plan-goal">Goal from MI Change Plan:</label>
               <div class="col-xs-7">
-                <input class="form-control" type="text" id="MI_change_plan_goal" placeholder="Goal from MI Change Plan">
+                <input class="form-control" type="text" id="MI-change-plan-goal" placeholder="Goal from MI Change Plan">
               </div>
             </div>          
             <div class="form-group row">
-              <label class="col-xs-5 control-label" for="inputReportTitle">TLFB summary information &#45;&#45; days assessed:</label>
+              <label class="col-xs-5 control-label" for="TLFB-summary-info-days">TLFB summary information &#45;&#45; days assessed:</label>
               <div class="col-xs-7">
-                <input class="form-control" type="text" id="TLFB_summary_info_days" placeholder="TLFB summary information days assessed">
+                <input class="form-control" type="text" id="TLFB-summary-info-days" placeholder="TLFB summary information days assessed">
               </div>
             </div>
            
             <div class="form-group row">
-              <label class="col-xs-5 control-label" for="inputReportTitle"># drinking days:</label>
+              <label class="col-xs-5 control-label" for="n-drinking-days"># drinking days:</label>
               <div class="col-xs-7">
-                <input type="text" class="form-control" id="n_drinking_days" placeholder="# drinking days">
+                <input type="text" class="form-control" id="n-drinking-days" placeholder="# drinking days">
               </div>
             </div>
          
             <div class="form-group row">
-              <label class="col-xs-5 control-label" for="inputReportTitle"># heavy (>4) drinking days:</label>
+              <label class="col-xs-5 control-label" for="n-heavy-drinking-days"># heavy (>4) drinking days:</label>
               <div class="col-xs-7">
-                <input type="text" class="form-control" id="n_heavy_drinking_days" placeholder="# heavy (>4) drinking days">
+                <input type="text" class="form-control" id="n-heavy-drinking-days" placeholder="# heavy (>4) drinking days">
               </div>   
             </div>
          
             <div class="form-group row">
-              <label class="col-xs-5 control-label" for="inputReportTitle"># std drinks/wk:</label>
+              <label class="col-xs-5 control-label" for="n-std-drinks-per-wk"># std drinks/wk:</label>
               <div class="col-xs-7">
-                <input type="text" class="form-control" id="n_std_drinks_per_wk" placeholder="# std drinks/wk">
+                <input type="text" class="form-control" id="n-std-drinks-per-wk" placeholder="# std drinks/wk">
               </div>
             </div>
           
             <div class="form-group row">
-              <label class="col-xs-5 control-label" for="inputReportTitle">drinks/drinking day:</label>
+              <label class="col-xs-5 control-label" for="drinks-or-drinking-day">drinks/drinking day:</label>
               <div class="col-xs-7">
-                <input type="text" class="form-control" id="drinks_or_drinking_day" placeholder="drinks/drinking day">
+                <input type="text" class="form-control" id="drinks-or-drinking-day" placeholder="drinks/drinking day">
               </div>
             </div>
-    
+             <div class="form-group row">
+              <label class="col-xs-5 control-label" for="input-tds-oney">TDS 1*:</label>
+              <div class="col-xs-7">
+                <input type="text" class="form-control" id="input-tds-one" placeholder="TDS 1" required>
+              </div>
+            </div>
+             <div class="form-group row">
+              <label class="col-xs-5 control-label" for="input-tds-two">TDS 2:</label>
+              <div class="col-xs-7">
+                <input type="text" class="form-control" id="input-tds-two" placeholder="TDS 2">
+              </div>
+            </div>
+             <div class="form-group row">
+              <label class="col-xs-5 control-label" for="input-tds-three">TDS 3:</label>
+              <div class="col-xs-7">
+                <input type="text" class="form-control" id="input-tds-three" placeholder="TDS 3">
+              </div>
+            </div>
           </form>
           
-          <button id="upload-button" type="button" class="btn btn-lg center-block" style="background-color: #3B9390; color: white; margin-top: 3em; margin-bottom: 3em;">Upload CSV Here</button>
+          <button id="upload-button" type="button" class="btn btn-lg center-block" style="background-color: #3B9390; color: white; margin-top: 3em; margin-bottom: 3em;">Upload CSV Here
+          </button>
           
         </div>
 
         <!-- CSV requirements -->
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-10 col-sm-offset-2">
           <h5>Instructions</h5>
           <p>
             For the report to accurately represent the data, please make sure that your csv files follow the below requirements.
@@ -144,21 +162,24 @@
           <ol>
             <li>Your CSV file is in the correct format. An alert will pop out stating the sucess of upload.</li>
             <li>Only include data of one participant in both CSV files.</li>
+            <li>* indicated field are required.</li>
           </ol>
         </div>
       </div>
 
       <!-- chart section -->
       <div id="chart-section" style="display: none;" class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <h3 class="text-center" id="inputReportTitle_output"></h3>
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="extra-margin"></div>
+          <h3 class="text-center" id="input-report-title-output"></h3>
           <span id="report-date" class="pull-right"></span>
-          <span>Participant's ID: <span id="inputParticipantID_output"></span></span>
+          <span>Participant's ID: <span id="input-participant-ID-output"></span></span>
         </div>
-        <div class="extra-margin"></div>
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="extra-margin"></div>
           <div class="thumbnail">
-            <div class="ct-chart ct-perfect-fourth img-responsive" id="ct-chart1"></div>
+            <!-- <div class="ct-chart ct-perfect-fourth img-responsive" id="ct-chart1"></div> -->
+            <canvas id="drinking-over-time-chart" width="500" height="400"></canvas>
           </div>
           <div class="caption">
             <h4>Time vs. Drinking</h4>
@@ -169,9 +190,9 @@
           <hr>
         </div>
         <div class="extra-margin"></div>
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-10 col-sm-offset-1">
           <div class="thumbnail">
-            <div class="ct-chart ct-perfect-fourth" id="ct-chart2"></div>
+           <canvas id="drinking-over-tds-chart" width="500" height="400"></canvas>
           </div>
           <div class="caption">
             <h4>Average drinking vs. TDS</h4>
@@ -185,10 +206,10 @@
 
       <!-- form section -->
       <div class="row" id="form-section" style="display: none;">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-10 col-sm-offset-1">
           <h4>BSCT Session 1 Patient Information for Therapist</h4>
           <div id="form-A-section">
-            <p>A. <b>Goal from MI Change Plan:</b> <span id="MI_change_plan_goal_output"></span></p>
+            <p>A. <b>Goal from MI Change Plan:</b> <span id="MI-change-plan-goal-output"></span></p>
           </div>
           <div id="form-B-section">
             <p>B. Baseline characteristics:</p>
@@ -203,48 +224,48 @@
                 <th>Motives endorsed (possibly yes or definitely yes)</th>
               </tr>
               <tr>
-                <td id="tds1label_output"></td>
-                <td id="tds1freq_output"></td>
-                <td id="tds1situation_output"></td>
-                <td id="tds1amtdrink_output"></td>
-                <td id="tds1time_output"></td>
-                <td id="tds1motives_output"></td>
+                <td id="tds1label-output"></td>
+                <td id="tds1freq-output"></td>
+                <td id="tds1situation-output"></td>
+                <td id="tds1amtdrink-output"></td>
+                <td id="tds1time-output"></td>
+                <td id="tds1motives-output"></td>
               </tr>
               <tr>
-                <td id="tds2label_output"></td>
-                <td id="tds2freq_output"></td>
-                <td id="tds2situation_output"></td>
-                <td id="tds2amtdrink_output"></td>
-                <td id="tds2time_output"></td>
-                <td id="tds2motives_output"></td>
+                <td id="tds2label-output"></td>
+                <td id="tds2freq-output"></td>
+                <td id="tds2situation-output"></td>
+                <td id="tds2amtdrink-output"></td>
+                <td id="tds2time-output"></td>
+                <td id="tds2motives-output"></td>
               </tr>
               <tr>
-                <td id="tds3label_output"></td>
-                <td id="tds3freq_output"></td>
-                <td id="tds3situation_output"></td>
-                <td id="tds3amtdrink_output"></td>
-                <td id="tds3time_output"></td>
-                <td id="tds3motives_output"></td>
+                <td id="tds3label-output"></td>
+                <td id="tds3freq-output"></td>
+                <td id="tds3situation-output"></td>
+                <td id="tds3amtdrink-output"></td>
+                <td id="tds3time-output"></td>
+                <td id="tds3motives-output"></td>
               </tr>
             </table>
             <div class="form-B-data">
-              <p>b. <b>TLFB summary information &#45;&#45; days assessed:</b> <span id="TLFB_summary_info_days_output"></span></p>
+              <p>b. <b>TLFB summary information &#45;&#45; days assessed:</b> <span id="TLFB-summary-info-days-output"></span></p>
               <ul>
-                <li><b># drinking days:</b> <span id="n_drinking_days_output"></span></li>
-                <li><b># heavy (>4) drinking days:</b> <span id="n_heavy_drinking_days_output"></span></li>
-                <li><b># std drinks/wk:</b> <span id="n_std_drinks_per_wk_output"></span></li>
-                <li><b>drinks/drinking day:</b> <span id="drinks_or_drinking_day_output"></span></li>
+                <li><b># drinking days:</b> <span id="n-drinking-days-output"></span></li>
+                <li><b># heavy (>4) drinking days:</b> <span id="n-heavy-drinking-days-output"></span></li>
+                <li><b># std drinks/wk:</b> <span id="n-std-drinks-per-wk-output"></span></li>
+                <li><b>drinks/drinking day:</b> <span id="drinks-or-drinking-day-output"></span></li>
               </ul>
             </div>
           </div>
           <div class="form-C-section">
             <p>C. Past month drinking</p>
             <ul>
-              <li><b>EMA compliance:</b> <span id="EMA_compliance_output"></span></li>
-              <li><b>Average # drinks/drinking day:</b> <span id="average_n_drinking_day_output"></span></li>
-              <li><b># heavy (>4) days:</b> <span id="n_heavy_days_output"></span></li>
-              <li><b># moderate (1-4) days:</b> <span id="n_moderate_days_output"></span></li>
-              <li><b># abstinent days:</b> <span id="n_abstinent_days_output"></span></li>
+              <li><b>EMA compliance:</b> <span id="EMA-compliance-output"></span></li>
+              <li><b>Average # drinks/drinking day:</b> <span id="average-n-drinking-day-output"></span></li>
+              <li><b># heavy (>4) days:</b> <span id="n-heavy-days-output"></span></li>
+              <li><b># moderate (1-4) days:</b> <span id="n-moderate-days-output"></span></li>
+              <li><b># abstinent days:</b> <span id="n-abstinent-days-output"></span></li>
             </ul>
           </div>
           <div id="form-D-section">
@@ -261,10 +282,10 @@
             </table>
             <p>Precentage of answers when excess was reported</p>
             <ul>
-              <li><b>Definitely not:</b> <span id="excess_0_output"></span></li>
-              <li><b>Possibly:</b> <span id="excess_1_output"></span></li>
-              <li><b>Probably:</b> <span id="excess_2_output"></span></li>
-              <li><b>Definitely:</b> <span id="excess_3_output"></span></li>
+              <li><b>Definitely not:</b> <span id="excess-zero-output"></span></li>
+              <li><b>Possibly:</b> <span id="excess-one-output"></span></li>
+              <li><b>Probably:</b> <span id="excess-two-output"></span></li>
+              <li><b>Definitely:</b> <span id="excess-three-output"></span></li>
             </ul>
           </div>
           <div id="funtion-buttons" class="pull-right">
@@ -285,28 +306,29 @@
         $(document).ready(function(){
             document.getElementById('tds-file-upload').addEventListener('change', upload, false);
             document.getElementById('survey-file-upload').addEventListener('change', upload, false);
-            var upload_section = document.getElementById("upload-csv-section");
-            var chart_section = document.getElementById("chart-section");
-            var form_section = document.getElementById("form-section");
-            var go_back = document.getElementById("go-back-button");
+            var uploadSection = document.getElementById("upload-csv-section");
+            var chartSection = document.getElementById("chart-section");
+            var formSection = document.getElementById("form-section");
+            var goBack = document.getElementById("go-back-button");
 
             $("#upload-button").on("click", function(){
-                tds_data_calculation($('#tds_data').data('csv')); 
-                get_the_thirty_days_period($('#survey_data').data('csv'));
+                console.log($('#tds-data').data('csv'));
+                tdsDataCalculation($('#tds-data').data('csv')); 
+                getTheThirtyDaysPeriod($('#survey-data').data('csv'));
                 var today = moment().format('MMMM Do, YYYY');
                 $("#report-date").html(today);
-                collect_value();
-                upload_section.style.display = 'none';
-                chart_section.style.display = 'block';
-                form_section.style.display = 'block';
+                collectInputValue();
+                uploadSection.style.display = 'none';
+                chartSection.style.display = 'block';
+                formSection.style.display = 'block';
                 // document.querySelector('#ct-chart1').__chartist__.update();
                 // document.querySelector('#ct-chart2').__chartist__.update();
             });
 
             $("#go-back-button").on("click", function() {
-                upload_section.style.display = 'block';
-                chart_section.style.display = 'none';
-                form_section.style.display = 'none';
+                uploadSection.style.display = 'block';
+                chartSection.style.display = 'none';
+                formSection.style.display = 'none';
             });      
         });
     </script>
