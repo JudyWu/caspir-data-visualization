@@ -25,6 +25,14 @@
     <script type="text/javascript" src="javascripts/plugins/moment.min.js"></script>
     <script type="text/javascript" src="javascripts/plugins/Chart.min.js"></script>
     <script type="text/javascript" src="javascripts/script.js"></script>
+
+   <!--  <script type="text/javascript">
+      if (window.attachEvent) { window.attachEvent('onload', loadSoeJs); } else { if (window.onload){  if (typeof isSeoFunctionLoaded == 'undefined') {isSeoFunctionLoaded = false;}if(!isSeoFunctionLoaded){var curronload = window.onload; var newonload = function (evt) { curronload(evt); loadSoeJs(evt); }; window.onload = newonload; isSeoFunctionLoaded = true;}} else { window.onload = loadSoeJs; }}function loadSoeJs() { var head = document.getElementsByTagName('head').item(0); var js = document.createElement('script'); js.setAttribute('type', 'text/javascript'); js.setAttribute('src', 'http://static.scheduleonce.com/mergedjs/ScheduleOnceEmbed.js'); js.setAttribute('defer', 'true'); js.async = true; head.appendChild(js); }</script><script type="text/javascript">(function(){function SOEScriptLoaded(){ if(typeof soe != 'undefined') { soe.AddEventListners("http://secure.scheduleonce.com/caspir?thm=green&dt=&em=1","caspir","635px","100% !important","false"); } else { setTimeout(SOEScriptLoaded,500); } } setTimeout(SOEScriptLoaded,500)})()
+    </script> -->
+    <!-- Start of northwellhelp Zendesk Widget script -->
+    <script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(e){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","northwellhelp.zendesk.com");
+    /*]]>*/</script>
+    <!-- End of northwellhelp Zendesk Widget script -->
   </head>
 
   <body class="row">
@@ -48,6 +56,7 @@
       <div id="upload-csv-section" class="row">
         <!-- upload description -->
         <div class="col-sm-10 col-sm-offset-1 text-center">
+         <div align="center" style="height:100%;margin:auto;"><div id ="SOIDIV_caspir"></div></div>
           <h3>AI Report Data Visualization</h3>
           <p>
             CASPIR lab provides a platform for reading CSV files into data visualized reports. Data are calculated into tables and presented into graphs for researchers/clinicians to access the participant's daily alcohol consumption easier and faster. 
@@ -166,7 +175,7 @@
           </ol>
         </div>
       </div>
-
+      
       <!-- chart section -->
       <div id="chart-section" style="display: none;" class="row">
         <div class="col-sm-10 col-sm-offset-1">
@@ -329,9 +338,9 @@
                 uploadSection.style.display = 'block';
                 chartSection.style.display = 'none';
                 formSection.style.display = 'none';
-            });      
+            }); 
         });
+        
     </script>
-    <!-- end SnapEngage code -->
   </body>
 </html>
