@@ -352,7 +352,7 @@ function surveyDataCalculation(data, thirtyDaysIndex, timeSpanLength, timeSpan) 
                 while (moment(value).diff(currentDate, 'days') > 1) {
                     currentDate = moment(currentDate).add(1, 'days').format('YYYY-MM-DD');
                     timeSpanLabelArray.push(currentDate);
-                    allDrinktotalSeriesArray.push(14);
+                    allDrinktotalSeriesArray.push(-1);
                 }
                 currentDate = dayValue;
                 timeSpanLabelArray.push(dayValue);
@@ -366,28 +366,28 @@ function surveyDataCalculation(data, thirtyDaysIndex, timeSpanLength, timeSpan) 
     });
 
     //Chart attributes
-    var backgroundColorArray = [];
-    var borderColorArray = [];
-    var blueColor = 'rgba(54, 162, 235, 0.9)';
-    var blueBorder = 'rgba(54, 162, 235, 1)';
-    var redColor = 'rgba(255, 99, 132, 0.2)';
-    var redBorder = 'rgba(255,99,132,1)';
+//     var backgroundColorArray = [];
+//     var borderColorArray = [];
+//     var blueColor = 'rgba(54, 162, 235, 0.9)';
+//     var blueBorder = 'rgba(54, 162, 235, 1)';
+//     var redColor = 'rgba(255, 99, 132, 0.2)';
+//     var redBorder = 'rgba(255,99,132,1)';
     var weekNumber = 1;
 
     for (var i = 0; i < allDrinktotalSeriesArray.length; i ++) {
-        if (allDrinktotalSeriesArray[i] == 14 ) {
-            backgroundColorArray.push(redColor);
-            borderColorArray.push(redBorder);
-        } else {
-            backgroundColorArray.push(blueColor);
-            borderColorArray.push(blueBorder);
-        }
+//         if (allDrinktotalSeriesArray[i] == 14 ) {
+//             backgroundColorArray.push(redColor);
+//             borderColorArray.push(redBorder);
+//         } else {
+//             backgroundColorArray.push(blueColor);
+//             borderColorArray.push(blueBorder);
+//         }
 
         if (i == 0 || i%7 == 0) {
             timeSpanLabelArray[i] = moment(timeSpanLabelArray[i]).format('ddd, M/D') + ' (Week ' + weekNumber + ')';
             weekNumber += 1;
         } else {
-            timeSpanLabelArray[i] = moment(timeSpanLabelArray[i]).format('ddd, M/D');
+            timeSpanLabelArray[i] = " ";
         }
     }
     //Draw chart one
@@ -427,7 +427,8 @@ function drawCharts(labelArray, dataArray, backgroundColorArray, borderColorArra
             scales: {
                 xAxes: [{
                     ticks: {
-                        autoSkip: false
+                        autoSkip: false,
+                        maxRotation: 100
                     }
                 }],
                 yAxes: [{
