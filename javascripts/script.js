@@ -366,8 +366,8 @@ function surveyDataCalculation(data, thirtyDaysIndex, timeSpanLength, timeSpan) 
     });
 
     //Chart attributes
-//     var backgroundColorArray = [];
-//     var borderColorArray = [];
+    var backgroundColorArray = [];
+    var borderColorArray = [];
 //     var blueColor = 'rgba(54, 162, 235, 0.9)';
 //     var blueBorder = 'rgba(54, 162, 235, 1)';
 //     var redColor = 'rgba(255, 99, 132, 0.2)';
