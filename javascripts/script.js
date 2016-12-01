@@ -366,8 +366,8 @@ function surveyDataCalculation(data, thirtyDaysIndex, timeSpanLength, timeSpan) 
     });
 
     //Chart attributes
-    var backgroundColorArray = [];
-    var borderColorArray = [];
+    var backgroundColorArray = ['rgba(54, 162, 235, 0.9)'];
+    var borderColorArray = ['rgba(54, 162, 235, 1)'];
 //     var blueColor = 'rgba(54, 162, 235, 0.9)';
 //     var blueBorder = 'rgba(54, 162, 235, 1)';
 //     var redColor = 'rgba(255, 99, 132, 0.2)';
@@ -434,7 +434,7 @@ function drawCharts(labelArray, dataArray, backgroundColorArray, borderColorArra
                 yAxes: [{
                     ticks: {
                         beginAtZero:true, 
-                        max: 14, 
+//                         max: 14, 
                         stepSize: 1
                     }
                 }]
