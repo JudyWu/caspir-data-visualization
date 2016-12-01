@@ -27,6 +27,10 @@ span {
   margin-bottom: 5em;
 }
 
+.excess-list li {
+  display: inline;
+}
+
 .ct-label {
   color: black !important;
   font-size: 1.3rem !important;
