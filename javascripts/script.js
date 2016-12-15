@@ -386,6 +386,8 @@ function surveyDataCalculation(data, thirtyDaysIndex, timeSpanLength, timeSpan) 
         if (i == 0 || i%7 == 0) {
             timeSpanLabelArray[i] = moment(timeSpanLabelArray[i]).format('ddd, M/D') + ' (Week ' + weekNumber + ')';
             weekNumber += 1;
+        } else if (i == (allDrinktotalSeriesArray.length - 1)) {
+            timeSpanLabelArray[i] = moment(timeSpanLabelArray[i]).format('ddd, M/D') + ' (Last day)';
         } else {
             timeSpanLabelArray[i] = " ";
         }
