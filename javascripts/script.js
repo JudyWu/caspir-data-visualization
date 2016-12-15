@@ -337,7 +337,7 @@ function surveyDataCalculation(data, thirtyDaysIndex, timeSpanLength, timeSpan) 
     var allDrinktotalSeriesArray = [];
 
     $.each(timeSpan, function(index, value) {
-        var dayValue = moment(value).format('YYYY-MM-DD'); 
+        var dayValue = moment(value).subtract(1, 'days').format('YYYY-MM-DD'); 
         if (index > 0) {
             if ((moment(dayValue).diff(currentDate, 'days') == 0)) {
                 if (allDrinktotalSeries[index] != NaN) {
