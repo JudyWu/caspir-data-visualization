@@ -180,7 +180,7 @@
           <div class="extra-margin"></div>
           <div class="thumbnail">
             <!-- <div class="ct-chart ct-perfect-fourth img-responsive" id="ct-chart1"></div> -->
-            <canvas id="drinking-over-time-chart" width="500" height="400"></canvas>
+            <canvas id="drinking-over-time-chart" width="450" height="250"></canvas>
           </div>
           <div class="caption">
             <h4>Time vs. Drinking</h4>
@@ -188,12 +188,12 @@
               The graph above shows the total number of drinking per day through the whole time the participant was in the study. X axis means the day while y axis means the number of drinks. 
             </p>
           </div>
-          <hr>
+<!--           <hr> -->
         </div>
-        <div class="extra-margin"></div>
+<!--         <div class="extra-margin"></div> -->
         <div class="col-sm-10 col-sm-offset-1">
           <div class="thumbnail">
-           <canvas id="drinking-over-tds-chart" width="500" height="400"></canvas>
+           <canvas id="drinking-over-tds-chart" width="450" height="250"></canvas>
           </div>
           <div class="caption">
             <h4>Average drinking vs. TDS</h4>
@@ -212,10 +212,10 @@
           <div id="form-A-section">
             <p>A. <b>Goal from MI Change Plan:</b> <span id="MI-change-plan-goal-output"></span></p>
           </div>
-          <div id="form-B-section">
+          <div id="form-B-section" class="row">
             <p>B. Baseline characteristics:</p>
             <p>a. TDS summary information</p>
-            <table id="form-B-table" class="table table-bordered">
+            <table id="form-B-table" class="table table-bordered" style="margin-left: 18px; width: 90% !important;">
               <tr>
                 <th>TDS (Typical Drinking Situation)</th>
                 <th>Typical frequency</th>
@@ -249,7 +249,7 @@
                 <td id="tds3motives-output"></td>
               </tr>
             </table>
-            <div class="form-B-data">
+            <div class="form-B-data col-xs-6">
               <p>b. <b>TLFB summary information &#45;&#45; days assessed:</b> <span id="TLFB-summary-info-days-output"></span></p>
               <ul>
                 <li><b># drinking days:</b> <span id="n-drinking-days-output"></span></li>
@@ -258,16 +258,16 @@
                 <li><b>drinks/drinking day:</b> <span id="drinks-or-drinking-day-output"></span></li>
               </ul>
             </div>
-          </div>
-          <div class="form-C-section">
-            <p>C. Past month drinking</p>
-            <ul>
-              <li><b>EMA compliance:</b> <span id="EMA-compliance-output"></span></li>
-              <li><b>Average # drinks/drinking day:</b> <span id="average-n-drinking-day-output"></span></li>
-              <li><b># heavy (>4) days:</b> <span id="n-heavy-days-output"></span></li>
-              <li><b># moderate (1-4) days:</b> <span id="n-moderate-days-output"></span></li>
-              <li><b># abstinent days:</b> <span id="n-abstinent-days-output"></span></li>
-            </ul>
+            <div class="form-C-section col-xs-6">
+              <p>C. Past month drinking (EMA Data)</p>
+              <ul>
+                <li><b>EMA compliance:</b> <span id="EMA-compliance-output"></span></li>
+                <li><b>Average # drinks/drinking day:</b> <span id="average-n-drinking-day-output"></span></li>
+                <li><b># heavy (>4) days:</b> <span id="n-heavy-days-output"></span></li>
+                <li><b># moderate (1-4) days:</b> <span id="n-moderate-days-output"></span></li>
+                <li><b># abstinent days:</b> <span id="n-abstinent-days-output"></span></li>
+              </ul>
+            </div>
           </div>
           <div id="form-D-section">
             <p>D. Overview of High Risk Situations over past month:</p>
@@ -282,7 +282,7 @@
               </tr>
             </table>
             <p>Precentage of answers when excess was reported</p>
-            <ul>
+            <ul class="excess-list">
               <li><b>Definitely not:</b> <span id="excess-zero-output"></span></li>
               <li><b>Possibly:</b> <span id="excess-one-output"></span></li>
               <li><b>Probably:</b> <span id="excess-two-output"></span></li>

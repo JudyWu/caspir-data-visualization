@@ -9,7 +9,7 @@ body {
 }
 
 .extra-margin {
-  height: 60px;
+  height: 5px;
 }
 
 h2 {
@@ -25,6 +25,10 @@ span {
 .separate-margin {
   margin-top: 5em;
   margin-bottom: 5em;
+}
+
+.excess-list li {
+  display: inline;
 }
 
 .ct-label {
