@@ -547,5 +547,30 @@ function convertDrinkTrack(clientsData, drinkData) {
     });
 
     console.log(clientDrinkTrack);
+   var titles = '';
+    for (var i = 0; i < 57; i++) {
+        var word = 'DrinkTrack_Day' + i.toString();
+        titles += word;
+        if (i < 56) {
+            titles += ',';
+        } else {
+            titles += '\n';
+        }
+    }
+    var csv = 'PID,' + titles;
+
+    $.each(clientDrinkTrack, function (key, value) {
+        csv += key.join(',');
+        $.each(value, function (k, v) {
+            csv += v.join(',');
+        });
+        csv += '\n';
+    });
    
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'clients_drink_track_188.csv';
+    hiddenElement.click();
 }
