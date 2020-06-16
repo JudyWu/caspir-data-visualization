@@ -560,12 +560,13 @@ function convertDrinkTrack(clientsData, drinkData) {
     var csv = 'PID,' + titles;
 
     $.each(clientDrinkTrack, function (key, value) {
-        csv += key.join(',');
+        csv += key.toString + ',';
         $.each(value, function (k, v) {
-            csv += v.join(',');
+            csv += v.toString() + ',';
         });
         csv += '\n';
     });
+   
    
     console.log(csv);
     var hiddenElement = document.createElement('a');
