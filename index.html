@@ -353,6 +353,8 @@
             }); 
           
             ////Additional BC
+            document.getElementById('clients-file-upload').addEventListener('change', upload, false);
+              document.getElementById('drink-file-upload').addEventListener('change', upload, false);
               $("#convert-button").on("click", function () {
                   console.log($('#clients-data').data('csv'));
                   console.log($('#drink-data').data('csv'));
