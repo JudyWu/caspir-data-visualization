@@ -549,7 +549,7 @@ function convertDrinkTrack(clientsData, drinkData) {
     console.log(clientDrinkTrack);
    var titles = '';
     for (var i = 0; i < 57; i++) {
-        var word = 'DrinkTrack_Day' + i.toString();
+        var word = 'DrinkDay' + i.toString();
         titles += word;
         if (i < 56) {
             titles += ',';
