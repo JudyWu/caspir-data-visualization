@@ -531,7 +531,7 @@ function convertDrinkTrack(clientsData, drinkData) {
         if (index > 0) {
             var dateObj = {};
             for (var i = 0; i < 57; i++) {
-                var date = moment(value[1]).format('YYYY-MM-DD');
+                var date = moment(value[1]).add(i, 'days').format('YYYY-MM-DD');
                 dateObj[date] = 999;
             }
             clientDrinkTrack[value[0]] = dateObj;
