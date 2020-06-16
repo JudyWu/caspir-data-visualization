@@ -507,6 +507,10 @@ function upload(evt) {
                     $('#tds-data').data('csv', data);
                 } else if (evt.target.id == 'survey-file-upload') {
                     $('#survey-data').data('csv', data);
+                } else if (evt.target.id == 'clients-file-upload') {
+                    $('#clients-data').data('csv', data);
+                } else if (evt.target.id == 'drink-file-upload') {
+                    $('#drink-data').data('csv', data);
                 }
                
             } else {
@@ -517,4 +521,31 @@ function upload(evt) {
             alert('Unable to read ' + file.fileName);
         };
     }
+}
+
+
+//////Additional 
+function convertDrinkTrack(clientsData, drinkData) {
+    var clientDrinkTrack = {};
+    $.each(clientsData, function (index, value) {
+        if (index > 0) {
+            var dateObj = {};
+            for (var i = 0; i < 57; i++) {
+                var date = moment(value[1]).format('YYYY-MM-DD');
+                dateObj[date] = 999;
+            }
+            clientDrinkTrack[value[0]] = dateObj;
+        }
+    });
+
+
+    $.each(drinkData, function (index, value) {
+        if (index > 0) {
+            var date = moment(value[1]).subtract(1, 'days').format('YYYY-MM-DD');
+            clientDrinkTrack[value[0]][date] = value[2];
+        }
+    });
+
+    console.log(clientDrinkTrack);
+   
 }

@@ -30,6 +30,10 @@
   <body class="row">
     <div id="tds-data"></div>
     <div id="survey-data"></div>
+    <!-- Additional BC -->
+    <div id="clients-data"></div>
+      <div id="drink-data"></div>
+    <!-------->
     <div id="center-section" class="col-md-10 col-md-offset-1">
       <!-- Header section -->
       <div class="header-section">
@@ -296,7 +300,23 @@
         </div>
       </div>
       <hr>
+  <!-- additional BC drink track data-->
+          <div class="col-sm-8 col-sm-offset-1">
+              <form class="form-horizontal">
+                  <div class="form-group row">
+                      <label class="col-xs-5 control-label" for="tds-file-upload">Clients CSV File*:</label>
+                      <input class="col-xs-7" type="file" name="File Upload" id="clients-file-upload" accept=".csv" required>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-xs-5 control-label" for="survey-file-upload">Drink Track CSV File*:</label>
+                      <input class="col-xs-7" type="file" name="File Upload" id="drink-file-upload" accept=".csv" required>
+                  </div>
+                  <button id="convert-button" type="button" class="btn btn-lg center-block" style="background-color: #3B9390; color: white; margin-top: 3em; margin-bottom: 3em;">
+                      Convert To DrinkTrack
+                  </button>
 
+              </form>
+          </div>
       <!-- footer section -->
       <footer>
         <span style="text-decoration: none;">Please email <a href="mailto:caspir@northwell.edu?subject=AI%20Report%20Data%20Visualization">CASPIR@northwell.edu</a> here for support/help.</span>
@@ -331,6 +351,13 @@
                 chartSection.style.display = 'none';
                 formSection.style.display = 'none';
             }); 
+          
+            ////Additional BC
+              $("#convert-button").on("click", function () {
+                  console.log($('#clients-data').data('csv'));
+                  console.log($('#drink-data').data('csv'));
+                  convertDrinkTrack($('#clients-data').data('csv'), $('#drink-data').data('csv'));
+              });
         });
         
     </script>
